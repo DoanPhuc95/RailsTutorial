@@ -25,3 +25,6 @@
 .idea/*
 public/*
 test/*
+.framgia-ci-reports/*
+config/database.yml
+config/secrets.yml
