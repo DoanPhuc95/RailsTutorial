@@ -23,6 +23,7 @@
 .byebug_history
 .DS_Store
 .idea/*
+public/*
 test/*
 .framgia-ci-reports/*
 config/database.yml
