@@ -3,7 +3,15 @@
 # You can disable smells completely
 IrresponsibleModule:
   enabled: false
-
+InstanceVariableAssumption:
+  enabled: false
+TooManyStatements:
+  enabled: true
+  exclude:
+  - initialize
+  max_statements: 10
+FeatureEnvy:
+  enabled: false
 # You can use filters to silence Reek warnings.
 # Either because you simply disagree with Reek (we are not the police) or
 # because you want to fix this at a later point in time.
@@ -18,6 +26,7 @@ NestedIterators:
 DataClump:
   max_copies: 3
   min_clump_size: 3
+
 
 ### Directory specific configuration
 

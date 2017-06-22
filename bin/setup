@@ -19,7 +19,7 @@ chdir APP_ROOT do
   system('bundle check') || system!('bundle install')
 
   # puts "\n== Copying sample files =="
-  # unless File.exist?('config/database.yml')
+  # unless File.exist?('config/database.yml.example')
   #   cp 'config/database.yml.example.sample', 'config/database.yml.example'
   # end
 
