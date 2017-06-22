@@ -20,11 +20,11 @@ Style/Documentation:
   Description: "Document classes and non-namespace modules."
   Enabled: false
 
-Style/EmptyLinesAroundAccessModifier:
+Layout/EmptyLinesAroundAccessModifier:
   Description: "Keep blank lines around access modifiers."
   Enabled: false
 
-Style/EmptyLiteral:
+Layout/EmptyLiteral:
   Description: "Prefer literals to Array.new/Hash.new/String.new."
   Enabled: false
 
@@ -40,7 +40,7 @@ Metrics/ModuleLength:
   Description: "Avoid modules longer than 100 lines of code."
   Enabled: false
 
-Style/AlignHash:
+Layout/AlignHash:
   Description: "Align the elements of a hash literal if they span more than one line."
   Enabled: false
 
@@ -50,10 +50,6 @@ Metrics/MethodLength:
 
 Metrics/ParameterLists:
   Description: "Avoid parameter lists longer than three or four parameters."
-  Enabled: false
-
-Metrics/PerceivedComplexity:
-  Description: "Too much complexity in if-condition flow"
   Enabled: false
 
 Style/EmptyMethod:
@@ -77,10 +73,10 @@ Metrics/CyclomaticComplexity:
 Metrics/AbcSize:
   Enabled: false
 
-Style/AlignArray:
+Layout/AlignArray:
   Description: >-
-                 Align the elements of an array literal if they span more than
-                 one line.
+    Align the elements of an array literal if they span more than
+    one line.
   Enabled: false
 
 Style/UnneededPercentQ:
@@ -97,8 +93,8 @@ Style/Encoding:
 
 Style/NestedParenthesizedCalls:
   Description: >-
-                 Parenthesize method calls which are nested inside the
-                 argument list of another parenthesized method call.
+    Parenthesize method calls which are nested inside the
+    argument list of another parenthesized method call.
   Enabled: false
 
 Style/ConditionalAssignment:
@@ -110,9 +106,9 @@ Style/ParallelAssignment:
 
 Style/ConditionalAssignment:
   Description: >-
-                 Use the return value of `if` and `case` statements for
-                 assignment to a variable and variable comparison instead
-                 of assigning that variable inside of each branch.
+    Use the return value of `if` and `case` statements for
+    assignment to a variable and variable comparison instead
+    of assigning that variable inside of each branch.
   Enabled: false
   SingleLineConditionsOnly: false
 
@@ -125,7 +121,7 @@ Style/StabbyLambdaParentheses:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#stabby-lambda-with-args'
   Enabled: false
 
-Style/ElseAlignment:
+Layout/ElseAlignment:
   Enabled: false
 
 Style/MutableConstant:
@@ -133,10 +129,10 @@ Style/MutableConstant:
 
 Style/RegexpLiteral:
   Description: >-
-                 Use %r for regular expressions matching more than
-                 `MaxSlashes` '/' characters.
-                 Use %r only for regular expressions matching more than
-                 `MaxSlashes` '/' character.
+    Use %r for regular expressions matching more than
+    `MaxSlashes` '/' characters.
+    Use %r only for regular expressions matching more than
+    `MaxSlashes` '/' character.
   Enabled: false
 
 Style/FormatString:
@@ -174,34 +170,39 @@ Rails/Output:
 Rails/Date:
   Enabled: false
   Description: >-
-                  Do not use to_time on Date objects, because they know
-                  nothing about the time zone in use
+    Do not use to_time on Date objects, because they know
+    nothing about the time zone in use
 Rails/TimeZone:
   Enabled: false
   Description: >-
-                  Do not use Time.at without zone. Use one of Time.zone.at,
-                  Time.current, Time.at.in_time_zone, Time.at.utc,
-                  Time.at.getlocal, Time.at.iso8601, Time.at.jisx0301,
-                  Time.at.rfc3339, Time.at.to_i, Time.at.to_f instead
+    Do not use Time.at without zone. Use one of Time.zone.at,
+    Time.current, Time.at.in_time_zone, Time.at.utc,
+    Time.at.getlocal, Time.at.iso8601, Time.at.jisx0301,
+    Time.at.rfc3339, Time.at.to_i, Time.at.to_f instead
 Lint/EndAlignment:
   Description: "Align ends correctly."
   Enabled: false
 
 Performance/StringReplacement:
   Description: >-
-                  Use `tr` instead of `gsub` when you are replacing the same
-                  number of characters. Use `delete` instead of `gsub` when
-                  you are deleting characters.
+    Use `tr` instead of `gsub` when you are replacing the same
+    number of characters. Use `delete` instead of `gsub` when
+    you are deleting characters.
   Reference: 'https://github.com/JuanitoFatas/fast-ruby#stringgsub-vs-stringtr-code'
   Enabled: false
 
-Style/MultilineOperationIndentation:
+Layout/MultilineOperationIndentation:
     Enabled: false
 
 Bundler/OrderedGems:
   Description: >-
-                 Sort alphabetically gems appearing within a contiguous set
-                 of lines in the Gemfile
+    Sort alphabetically gems appearing within a contiguous set
+    of lines in the Gemfile
   Enabled: false
   Include:
     - '**/Gemfile'
+Lint/AmbiguousBlockAssociation:
+  StyleGuide: '#syntax'
+  Enabled: false
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
