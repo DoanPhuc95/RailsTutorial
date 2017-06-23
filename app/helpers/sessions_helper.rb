@@ -4,15 +4,48 @@ module SessionsHelper
   end
 
   def current_user
-    @current_user ||= User.find_by id: session[:user_id]
+    session_id = session[:user_id]
+    cookie_id = cookies.signed[:user_id]
+    if session_id
+      @current_user ||= User.find_by id: session_id
+    elsif cookie_id
+      user = User.find_by id: cookie_id
+      if user && user.authenticated?(cookies[:remember_token])
+        log_in user
+        @current_user = user
+      end
+    end
+  end
+
+  def forget user
+    user.forget
+    cookies.delete :user_id
+    cookies.delete :remember_token
   end
 
   def log_out
+    forget current_user
     session.delete :user_id
     @current_user = nil
   end
 
   def logged_in?
     current_user.present?
+  end
+
+  def remember user
+    user.remember
+    permanent = cookies.permanent
+    permanent.signed[:user_id] = user.id
+    permanent[:remember_token] = user.remember_token
+  end
+
+  def redirect_back_or default
+    redirect_back_or session[:forwarding_url] || default
+    session.delete :forwarding_url
+  end
+
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get
   end
 end
