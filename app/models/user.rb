@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  attr_readonly :remember_token
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name, presence: true,
@@ -14,14 +16,35 @@ class User < ApplicationRecord
     length: {minimum: Settings.password_length_minimum}
 
   class << self
+    include BCrypt
+    include ActiveModel
+
     def digest string
-      if cost = ActiveModel::SecurePassword.min_cost
-        BCrypt::Engine::MIN_COST
+      if cost = SecurePassword.min_cost
+        Engine.MIN_COST
       else
-        BCrypt::Engine.cost
+        Engine.cost
       end
-      BCrypt::Password.create string, cost: cost
+      Password.create string, cost: cost
     end
+
+    def new_token
+      SecureRandom.urlsafe_base64
+    end
+  end
+
+  def forget
+    update_attributes remember_digest: nil
+  end
+
+  def remember
+    self.remember_token = User.new_token
+    update_attributes remember_digest: User.digest(remember_token)
+  end
+
+  def authenticate?
+    return false unless remember_digest
+    Password.new(remember_digest).is_password? :remember_token
   end
 
   private
