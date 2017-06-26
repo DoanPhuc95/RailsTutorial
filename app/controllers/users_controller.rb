@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show]
-  before_action :logged_in_user, only: [:index, :edit, :update]
+  before_action :logged_in_user, except: [:new, :create]
+  before_action :find_user, except: [:index, :new, :create]
   before_action :correct_current_user, only: [:edit, :update]
 
   def index
-    @users = User.paginate page: params[:page]
+    @users = User.activated
   end
 
   def new
@@ -13,21 +13,16 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
-    user = @user
-    if user.save
-      log_in user
-      flash[:success] = t "welcome"
-      redirect_to user
+    if @user.save
+      @user.send_activation_email
+      flash[:info] = t "please_activate"
+      redirect_to root_url
     else
       render :new
     end
   end
 
   def show
-    unless @user
-      flash[:danger] = t "invalid_login"
-      redirect_to signup_url
-    end
   end
 
   def edit
@@ -38,11 +33,8 @@ class UsersController < ApplicationController
       flash[:success] = t "profile_updated"
       redirect_to @user
     else
-      redirect_to :edit
+      render :edit
     end
-  end
-
-  def destroy
   end
 
   private
@@ -52,7 +44,13 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.find_by id: params[:id]
+    if id = params[:id]
+      @user = User.find_by id: id
+    end
+    unless @user
+      flash[:danger] = t "invalid_login"
+      redirect_to root_url
+    end
   end
 
   def logged_in_user
