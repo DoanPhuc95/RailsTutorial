@@ -47,6 +47,10 @@ class User < ApplicationRecord
     Password.new(remember_digest).is_password? :remember_token
   end
 
+  def current_user? user
+    user == current_user
+  end
+
   private
   def downcase_email
     self.email = email.downcase
