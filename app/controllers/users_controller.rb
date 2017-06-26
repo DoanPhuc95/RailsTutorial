@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show]
-  before_action :logged_in_user, only: [:index, :edit, :update]
+  before_action :find_user, only: :show
+  before_action :logged_in_user, except: [:new, :create]
   before_action :correct_current_user, only: [:edit, :update]
 
   def index
-    @users = User.paginate page: params[:page]
+    @users = User.activated
   end
 
   def new
