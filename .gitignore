@@ -29,6 +29,7 @@ test/*
 config/settings/*
 config/database.yml
 config/secrets.yml
+config/environment_variables.yml
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
