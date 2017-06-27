@@ -5,13 +5,15 @@ IrresponsibleModule:
   enabled: false
 InstanceVariableAssumption:
   enabled: false
+Attribute:
+  enabled: false
 FeatureEnvy:
   enabled: false
 TooManyStatements:
   enabled: true
   exclude:
   - initialize
-  max_statements: 10
+  max_statements: 15
 # You can use filters to silence Reek warnings.
 # Either because you simply disagree with Reek (we are not the police) or
 # because you want to fix this at a later point in time.
