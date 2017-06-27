@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, except: [:new, :create]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
+    :following, :followers]
   before_action :find_user, except: [:index, :new, :create]
   before_action :correct_current_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
