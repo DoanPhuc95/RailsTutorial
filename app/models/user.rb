@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   include BCrypt
+
+  has_many :microposts, dependent: :destroy
+
   before_save :downcase_email
   before_create :create_activation_digest
 
@@ -78,12 +81,8 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
-  def activate
-    update_attributes activated: true, activated_at: Time.zone.now
-  end
-
-  def send_activation_email
-    UserMailer.account_activation(self).deliver_now
+  def feeds
+    microposts.newest_first
   end
 
   private

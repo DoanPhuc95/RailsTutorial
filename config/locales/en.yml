@@ -67,3 +67,11 @@ en:
   submit: "Submit"
   flash_danger: "Dangerous"
   click_to_reset: "To reset your password click the link below:"
+  will_expire: "This link will expire in two hours."
+  note: "If you did not request your password to be reset,
+    please ignore this email and your password will stay as it is."
+  posted: "Posted"
+  ago: "ago"
+  delete: "delete"
+  confirm_delete: "Comfirm delete"
+  less_than_5: "should be less than 5MB"
