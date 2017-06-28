@@ -14,7 +14,7 @@ class PasswordResetsController < ApplicationController
       flash[:info] = t "flash_info"
       redirect_to root_url
     else
-      flash.now[:danger] = t "danger"
+      flash.now[:danger] = t "flash_danger"
       render :new
     end
   end
@@ -25,14 +25,12 @@ class PasswordResetsController < ApplicationController
   def update
     if params[:user][:password].empty?
       @user.errors.add :password, t("empty?")
-      render :edit
     elsif @user.update_attributes user_params
       log_in @user
       flash[:success] = t "success"
       redirect_to @user
-    else
-      render :edit
     end
+    render :edit
   end
 
   private
@@ -60,7 +58,7 @@ class PasswordResetsController < ApplicationController
 
   def check_expiration
     if @user.password_reset_expired?
-      flash[:danger] = t "danger"
+      flash[:danger] = t "flash_danger"
       redirect_to new_password_reset_url
     end
   end

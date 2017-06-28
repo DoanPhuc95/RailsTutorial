@@ -48,4 +48,9 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.original_url if request.get
   end
+
+  def micropst_human_count
+    Micropost.model_name.human count: current_user.microposts.count
+  end
+
 end

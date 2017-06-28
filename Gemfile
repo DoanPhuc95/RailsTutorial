@@ -16,6 +16,7 @@ gem "config"
 gem "faker", "1.7.3"
 gem "will_paginate", "3.1.5"
 gem "bootstrap-will_paginate", "1.0.0"
+gem "carrierwave", "~> 0.11.2"
 
 group :development, :test do
   gem "byebug", platform: :mri
